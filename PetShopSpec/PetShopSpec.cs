@@ -107,5 +107,21 @@ namespace Training.Specificaton
         It invalid_cast_exception_should_be_thrown = () => exception.ShouldBeOfExactType<InvalidCastException>();
     }
 
+    class when_iterating_over_pets : pet_shop_concern
+    {
+        Establish c = () => pet_initial_content.AddManyItems(new Pet { name = "Pixie" }, new Pet { name = "Dixie" });
+        Because b = () =>
+        {
+            IEnumerable<Pet> returned_pets = subject.AllPets();
+            exception = Catch.Exception(() => { var x = (ICollection<Pet>)returned_pets; });
+            foreach (var returnedPet in returned_pets)
+            {
+                
+            }
+        };
+        private static IEnumerable<Pet> returned_collection_of_pets;
+        private static Exception exception;
+        It invalid_cast_exception_should_be_thrown = () => exception.ShouldBeOfExactType<InvalidCastException>();
+    }
 
 }

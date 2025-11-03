@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Training.DomainClasses;
 
@@ -8,6 +9,15 @@ public static class EnumerableExtensions
         foreach (var item in items)
         {
             yield return item;
+        }
+    }
+
+    public static IEnumerable<Pet> AllItemsThatSatisfy(this IList<Pet> items, Func<Pet, bool> condition)
+    {
+        foreach (var pet in items)
+        {
+            if (condition(pet))
+                yield return pet;
         }
     }
 }

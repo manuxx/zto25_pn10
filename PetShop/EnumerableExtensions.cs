@@ -12,7 +12,6 @@ public static class EnumerableExtensions
         }
     }
 
-
     public static IEnumerable<TItem> AllItemsThat<TItem>(this IEnumerable<TItem> items, Predicate<TItem> condition)
     {
         return items.AllItemsThat(new AnonymousCriteria<TItem>(condition));
@@ -26,24 +25,4 @@ public static class EnumerableExtensions
                 yield return item;
         }
     }
-}
-
-public class AnonymousCriteria<TItem> : Criteria<TItem>
-{
-    private readonly Predicate<TItem> _condition;
-
-    public AnonymousCriteria(Predicate<TItem> condition)
-    {
-        _condition = condition;
-    }
-
-    public bool IsSatisfiedBy(TItem item)
-    {
-        return _condition(item);
-    }
-}
-
-public interface Criteria<TItem>
-{
-    bool IsSatisfiedBy(TItem item);
 }

@@ -13,7 +13,7 @@ public static class EnumerableExtensions
     }
 
 
-    public static IEnumerable<TItem> AllItemsThatSatisfy<TItem>(this IEnumerable<TItem> items, Predicate<TItem> condition)
+    public static IEnumerable<TItem> AllItemsThat<TItem>(this IEnumerable<TItem> items, Predicate<TItem> condition)
     {
         foreach (var item in items)
         {
